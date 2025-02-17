@@ -142,24 +142,27 @@ def Modificar_Registro(ruta_archivo):
 
 def Consultar_Registro(ruta_archivo):
         while True:
-            llave = input("Ingrese el código del registro que desea consultar (o escriba '0' para volver): ").strip().upper()
+            llave = input("Ver el registro unitario marque 1, ver el registro general marque 2, volver al menú principal marque 0 :  ").strip().upper()
             if llave == '0':
                 print("🔙 Volviendo al menú principal...")
                 time.sleep(1)
                 break
-            with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
-                registros = json.load(archivo)
-
-            if llave in registros:
-                print("\n📌 Registro encontrado:")
-                print(f"\n Datos actuales: {registros[llave]}")
-                input("\nPresione ENTER para volver al menú principal")
-                print("🔙 Volviendo al menú principal...")
-                time.sleep(2)
-                break
-            else:
-                print("❌ Registro no encontrado. Escriba el codigo del registro correctamente:")
-                continue    
+            if llave == '1':
+                llave =input("Digite el codigo a consultar:  ").strip().upper()
+                with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
+                    registros = json.load(archivo)
+                if llave in registros:
+                    print("\n📌 Registro encontrado:")
+                    print("\n" + "-" * 80)  
+                    print(f"Datos actuales: {registros[llave]}")
+                    print("-" * 80)  
+                    input("\nPresione ENTER para volver al menú principal") 
+                    print("🔙 Volviendo al menú principal...")
+                    time.sleep(2)
+                    break
+                else:
+                    print("❌ Registro no encontrado. Escriba el codigo del registro correctamente:")
+                    continue    
         limpiar()
 
 
